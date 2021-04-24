@@ -26,9 +26,44 @@ app.post("/", function(req, res){
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
-    console.log(`${firstName} ${lastName} ${email}`);
-})
+
+    // User 
+    const data = {
+        members: [
+            {
+                email_address: email,
+                status: "subscribed",
+                merge_fields: {
+                    FNAME: firstName,
+                    LNAME: lastName
+                }
+            }
+        ]
+    };
+
+    const jsonData = JSON.stringify(data);
+
+    // Mail chimp endpoint
+    // Added /list/{list id}
+    // Added us{x}
+    const url = "region | endpoint | list id";
+
+    const options = {
+        method: "POST",
+        auth: "username:API key here"
+    }
+
+    // Make https request to store data
+    const request = https.request(url, options, function(response){
+        response.on("data", function(data){
+        console.log(JSON.parse(data));
+    })})
+
+    // Write data to the server
+    request.write(jsonData);
+    request.end();
+});
 
 app.listen(port, function(req, res){
     console.log("Server is running on port " + port);
-})
+});
