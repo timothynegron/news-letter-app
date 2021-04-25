@@ -33,3 +33,24 @@ A Web App that allows users to sign up to subscribe to a newsletter.
    * Need to create a list, then add
    * Unique list ID **needed** cause can create multiple list
    * Mailchimp List: CREATE | READ | EDIT | DELETE 
+
+### Mailchimp
+
+1. Create an account
+2. Get API Key
+3. Install Client library (not needed)
+4. Make API call to test
+5. Get List ID
+6. Add user to list
+
+### Heroku
+
+1. Create an account
+2. Install Heroku
+3. Prepare the app
+   1. process.env.PORT
+   2. Procfile - web: node app.js (point to server code)
+   3. Save to Git
+4. Deploy the app
+   1. Create a new app on heroku | heroku create
+   2. push to server | git push heroku master
